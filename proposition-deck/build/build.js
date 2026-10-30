@@ -26,6 +26,7 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
     check: ["LuCircleCheck", "gold"], checkL: ["LuCircleCheck", "label"],
     brief: ["LuClipboardCheck", "ink"], camera: ["LuCamera", "ink"], file: ["LuFileText", "ink"],
     repeat: ["LuRepeat", "ink"], pulse: ["LuActivity", "ink"], clock: ["LuClock", "ink"],
+    badge: ["LuBadgeCheck", "ink"], mega: ["LuMegaphone", "ink"],
   });
   deck.layouts({ coverTitleW: 7.6, coverTitleSize: 50 });
 
@@ -165,25 +166,39 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
   T(s, "Every phone in the crowd is a camera. AToure makes sure the right creators are holding them, and counts what they deliver.",
     { x: ax + 0.25, y: 5.38, w: aw - 0.5, h: 0.85, fontSize: 13, color: "tint" });
 
-  // 4. The answer
+  // 4. Who gives what: the festival's colour for what it provides, gold for what AToure delivers
   deck.section("The AToure answer");
-  s = deck.content("CONTENT_LIGHT", "THE ATOURE ANSWER", "Three layers, one operator",
-    "Three layers, run by one team. Talent access brings the right creators. Creator management means AToure runs them on the ground as the operator, not as a middleman. The visibility report turns everything they post into numbers the festival can put in front of sponsors. The report is the product: it is what makes the creator spend provable.");
+  s = deck.content("CONTENT_LIGHT", "THE ATOURE ANSWER", "Mother Africa gives access. AToure does the rest",
+    "Two columns: what the festival provides, in orange, and what AToure delivers, in gold. The festival’s side is small on purpose: access for the creators, its brand guidelines and key messages, the ticket links, and one contact on production. Everything else is AToure’s: the creators, running them on the ground as the operator, and the report that makes the visibility provable.");
   brand(s, false);
-  [
-    ["01", "Talent access", ["Creators matched to the audiences Mother Africa wants", "Music, fashion and lifestyle voices in Abidjan and the diaspora", "DJs and streamers for the headline sets", "VIP invitations organised for talent"]],
-    ["02", "Creator management", ["Set deliverables agreed with every creator", "Briefs with key messages, tags and the ticket link", "Accreditation, scheduling and one point of contact", "On site on both nights, in the moments that matter"]],
-    ["03", "The visibility report", ["A check at 48 hours, the full report on day 14", "Every post, every platform, in one document", "Audiences, diaspora reach and ticket links", "Sponsor value, partner by partner"]],
-  ].forEach(([n, head, items], i) => {
-    const x = M + i * 4.145;
-    deck.card(s, x, 1.95, 3.84, 3.5);
-    s.addShape(pres.ShapeType.rect, { x, y: 1.95, w: 3.84, h: 0.5, fill: { color: C.gold }, line: { type: "none" } });
-    T(s, n, { x: x + 0.25, y: 1.95, w: 1, h: 0.5, fontSize: 13, bold: true, charSpacing: 2, color: "ink", valign: "middle" });
-    T(s, head, { x: x + 0.25, y: 2.65, w: 3.4, h: 0.45, fontFace: deck.HEAD, fontSize: 22, color: "ink" });
-    bullets(s, items, { x: x + 0.25, y: 3.2, w: 3.4, h: 2.15, fontSize: 14 });
+  const colW2 = (CW - 0.33) / 2, gx = M + colW2 + 0.33;
+  [[M, "client", "FCE9DA", "WHAT MOTHER AFRICA PROVIDES"], [gx, "gold", "F7F1E0", "WHAT ATOURE DELIVERS"]].forEach(([x, role, tint, head]) => {
+    s.addShape(pres.ShapeType.rect, { x, y: 1.95, w: colW2, h: 3.55, fill: { color: tint }, line: { type: "none" } });
+    s.addShape(pres.ShapeType.rect, { x, y: 1.95, w: colW2, h: 0.5, fill: { color: C[role] }, line: { type: "none" } });
+    T(s, head, { x: x + 0.3, y: 1.95, w: colW2 - 0.5, h: 0.5, fontSize: 12, bold: true, charSpacing: 2, color: "ink", valign: "middle" });
   });
-  s.addShape(pres.ShapeType.roundRect, { x: M, y: 5.7, w: CW, h: 0.8, rectRadius: 0.1, fill: { color: C.ink }, line: { type: "none" } });
-  T(s, "Creators produce visibility. AToure makes it provable, so the festival can sell it to sponsors.", { x: 0.9, y: 5.7, w: 11.5, h: 0.8, fontFace: deck.HEAD, fontSize: 19, color: "paper", valign: "middle" });
+  [
+    ["badge", "Accreditation and access zones for the creators"],
+    ["mega", "Brand guidelines and the key messages"],
+    ["ticket", "Ticket links, and codes if the festival wants them"],
+    ["users", "One contact on the production team"],
+  ].forEach(([icon, t], i) => {
+    const y = 2.68 + i * 0.7;
+    deck.iconCircle(s, icon, M + 0.3, y, 0.48, "client");
+    T(s, t, { x: M + 0.95, y, w: colW2 - 1.2, h: 0.48, fontSize: 14, color: "ink", valign: "middle" });
+  });
+  [
+    ["Talent access", "Creators matched to the audiences Mother Africa wants"],
+    ["Creator management on the ground", "Briefs, accreditation, approvals and one point of contact"],
+    ["The visibility report", "A check at 48 hours, the full report on day 14"],
+  ].forEach(([head, line], i) => {
+    const y = 2.68 + i * 0.92;
+    deck.numCircle(s, i + 1, gx + 0.3, y, 0.48, { fill: "gold", color: "ink", size: 13 });
+    T(s, head, { x: gx + 0.95, y: y - 0.05, w: colW2 - 1.2, h: 0.38, fontFace: deck.HEAD, fontSize: 18, color: "ink" });
+    T(s, line, { x: gx + 0.95, y: y + 0.33, w: colW2 - 1.2, h: 0.34, fontSize: 13, color: "muted" });
+  });
+  s.addShape(pres.ShapeType.roundRect, { x: M, y: 5.75, w: CW, h: 0.8, rectRadius: 0.1, fill: { color: C.ink }, line: { type: "none" } });
+  T(s, "Creators produce visibility. AToure makes it provable, so the festival can sell it to sponsors.", { x: 0.9, y: 5.75, w: 11.5, h: 0.8, fontFace: deck.HEAD, fontSize: 19, color: "paper", valign: "middle" });
 
   // 5. Creator management
   s = deck.content("CONTENT_LIGHT", "CREATOR MANAGEMENT ON THE GROUND", "AToure runs every creator, end to end",
@@ -222,7 +237,7 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
 
   // 6. Three waves
   deck.section("Visibility");
-  s = deck.content("CONTENT_DARK", "VISIBILITY", "Visibility in three waves",
+  s = deck.content("CONTENT_DARK", "VISIBILITY", "Visibility builds in three waves",
     "Visibility comes in three waves. The build up runs about five weeks and has one job: sell tickets. The two festival nights are about live reach, making people who are not there wish they were. The afterglow keeps Mother Africa in feeds into January and gives sponsors content to point to. If the festival plans a 2027 announcement, the afterglow is where it lands.",
     stripesFooter);
   brand(s, true);
@@ -244,7 +259,7 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
   T(s, "Every wave sits in one content calendar, approved by the festival before anything goes live.", { x: 0.85, y: 6.05, w: 11.8, h: 0.6, fontFace: deck.HEAD, fontSize: 20, color: "paper", valign: "middle" });
 
   // 7. Sponsors
-  s = deck.content("CONTENT_LIGHT", "VISIBILITY", "Visibility for every sponsor",
+  s = deck.content("CONTENT_LIGHT", "VISIBILITY", "Every sponsor gets visibility it can prove",
     "Sponsors are paying for visibility, and creators are one of the best ways to deliver it. Sponsor mentions go into every brief, creators are guided to each activation and stage banner on both nights, and every partner gets its own page in the report. The revenue model is the same chain as before, seen from the sponsor’s side: more creators bring more visibility, visibility meets the brands’ goals, and met goals bring sponsor money back for 2027. Any media value is an estimate and is labelled as one.");
   brand(s, false);
   const pp = deck.photo(s, "press", { x: M, y: 1.95, w: 4.0, alt: "The Mother Africa Festival team at a press event in front of the festival backdrop" });
@@ -262,28 +277,9 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
   });
   revenueModel(s, M, 4.75, CW, 1.9);
 
-  // 8. Inside the report
+  // 8. Reports on fixed dates
   deck.section("The visibility report");
-  s = deck.content("CONTENT_LIGHT", "THE VISIBILITY REPORT", "What Mother Africa actually receives",
-    "Seven things, and for each one where the number comes from. Creators send their analytics as screen recordings, which is written into their agreement. Ticket clicks come from tracked links; codes only if the festival supplies them, to confirm with Tikerama. Targets for each line are agreed with the festival before the build up starts.");
-  brand(s, false);
-  deck.table(s,
-    [{ text: "What we measure" }, { text: "What it tells the festival" }, { text: "How we capture it" }],
-    [
-      ["Views and reach", "How far festival content travelled", "Screen recorded analytics from every creator"],
-      ["Interactions", "Whether people cared enough to react", "Likes, comments, shares and saves, per post and per creator"],
-      ["Audiences", "Who watched, and from where", "Countries, Côte d’Ivoire and diaspora, age and gender"],
-      ["Tickets", "Which creators drove ticket sales", "Tracked links to maf.tikerama.com, and codes where supplied"],
-      ["Festival accounts", "New followers for Mother Africa", "Account growth through the build up and the nights"],
-      ["Conversation", "How much people talk about the festival", "Hashtag and mention tracking"],
-      ["Sponsor value", "What each partner received", "On screen moments, screen time, estimated media value"],
-    ],
-    { x: M, y: 1.95, w: CW, colW: [2.4, 4.0, CW - 6.4], rowH: 0.48, fontSize: 13 });
-  T(s, "Every figure comes from creator analytics, tracked links or ticketing data. Anything modelled is labelled estimated.",
-    { x: M, y: 6.15, w: CW, h: 0.3, fontSize: 13, italic: true, color: "muted" });
-
-  // 9. Reports on fixed dates
-  s = deck.content("CONTENT_LIGHT", "THE VISIBILITY REPORT", "Reports on fixed dates",
+  s = deck.content("CONTENT_LIGHT", "THE VISIBILITY REPORT", "Mother Africa gets the numbers on fixed dates",
     "Three fixed dates. A one page weekly pulse during the build up, so effort moves to the creators who are working. A check 48 hours after the festival: who posted, where, against which brief. The full report on day 14, by 11 January 2027, as a PDF for the board and sponsors with a web version. The page on the right is a sample layout: its figures are illustrative, to show the format, and are not a forecast for the festival.",
     undefined);
   brand(s, false);
@@ -327,6 +323,32 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
   T(s, "Sample layout. Figures are illustrative.", { x: rx + 0.3, y: ry + 4.42, w: 3.2, h: 0.22, fontSize: 10, italic: true, bold: true, color: "label" });
   T(s, [{ text: "Page 2  →", options: { hyperlink: { slide: PAGE2, tooltip: "Sample report, page 2" } } }],
     { x: rx + rw - 1.4, y: ry + 4.42, w: 1.1, h: 0.22, fontSize: 10, bold: true, color: "label", align: "right" });
+
+  // 9. The proposal: one line, no prices
+  deck.section("The proposal");
+  s = deck.content("CONTENT_LIGHT", "THE PROPOSAL", "A trial at the 5th edition. One full report",
+    "This is a trial, not a long term ask. One edition: AToure runs the creators and delivers one full report on a fixed date. The trial is what earns the conversation about 2027. There is no price on this slide on purpose: scope and fees are agreed once the festival says yes.");
+  brand(s, false);
+  T(s, "AToure manages the creator activation for the 5th edition and delivers a full visibility report on the festival, built to go to sponsors and partners.",
+    { x: M, y: 1.95, w: 7.1, h: 0.95, fontSize: 16, color: "muted", lineSpacingMultiple: 1.1 });
+  [
+    ["THE ACTIVATION", "gold", "Creators matched to the festival’s audiences, managed on the ground before, during and after 27 and 28 December."],
+    ["THE REPORT", "client", "A check at 48 hours and the full report on day 14, built for the festival team and for every sponsor."],
+  ].forEach(([k, role, body], i) => {
+    const y = 3.1 + i * 1.45;
+    s.addShape(pres.ShapeType.rect, { x: M, y, w: 7.1, h: 0.42, fill: { color: C[role] }, line: { type: "none" } });
+    T(s, k, { x: M + 0.25, y, w: 6.6, h: 0.42, fontSize: 12, bold: true, charSpacing: 3, color: "ink", valign: "middle" });
+    s.addShape(pres.ShapeType.rect, { x: M, y: y + 0.42, w: 7.1, h: 0.85, fill: { color: C.paper }, line: { color: C.muted, width: 0.75, transparency: 72 } });
+    T(s, body, { x: M + 0.25, y: y + 0.5, w: 6.6, h: 0.7, fontSize: 15, color: "ink" });
+  });
+  T(s, "A trial, not a long term commitment. It is what earns the conversation about 2027.", { x: M, y: 6.05, w: 7.1, h: 0.55, fontFace: deck.HEAD, fontSize: 19, color: "label" });
+  const kx = 8.15, kw = R - kx;
+  s.addShape(pres.ShapeType.roundRect, { x: kx, y: 1.95, w: kw, h: 4.65, rectRadius: 0.1, fill: { color: C.ink }, line: { type: "none" } });
+  const km = deck.manifest.maf_light, klh = 1.55, klw = klh * km.w / km.h;
+  mafLogo(s, true, kx + (kw - klw) / 2, 2.45, klh);
+  T(s, "×", { x: kx, y: 4.1, w: kw, h: 0.6, fontSize: 30, color: "gold", align: "center", valign: "middle" });
+  deck.logo(s, "dark", kx + (kw - 3.4) / 2, 4.9, 3.4);
+  T(s, "27 and 28 December 2026  ·  Marcory Zone 4", { x: kx, y: 5.85, w: kw, h: 0.3, fontSize: 11, color: "highlight", align: "center" });
 
   deck.section("Proof");
   // 10. Track record
@@ -385,7 +407,7 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
 
   // 12. Appendix: the sample report, page 2. Illustrative figures that add up to page 1.
   deck.section("Appendix");
-  s = deck.content("CONTENT_LIGHT", "APPENDIX  ·  SAMPLE REPORT, PAGE 2", "The detailed breakdown",
+  s = deck.content("CONTENT_LIGHT", "APPENDIX  ·  SAMPLE REPORT, PAGE 2", "Every number breaks down, creator by creator",
     "Page 2 of the sample report, to show the depth behind the headline numbers: every creator with posts, views, interactions and ticket clicks, where the audience was, and what each partner received. The figures are illustrative and add up to page 1; they are not a forecast. The full report also lists every post with its link and time, and ends with recommendations for the next edition.");
   brand(s, false);
   const bx = M, by = 1.95, bw = CW, bh = 4.85;
@@ -407,8 +429,8 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
       ["Total", "64", "3,200,000", "250,000", "9,400"],
     ],
     { x: bx + 0.3, y: by + 1.36, w: 6.7, colW: [2.0, 0.8, 1.3, 1.3, 1.3], rowH: 0.3, fontSize: 10, name: "Sample table by creator" });
-  T(s, "Also in the full report: every post with its link, platform and time, and recommendations for the next edition.",
-    { x: bx + 0.3, y: by + 4.12, w: 6.9, h: 0.26, fontSize: 10, color: "muted" });
+  T(s, "The full report also lists every post with its link, platform and time, and ends with recommendations. Every figure comes from creator analytics, tracked links or ticketing data; anything modelled is labelled estimated.",
+    { x: bx + 0.3, y: by + 4.05, w: 6.9, h: 0.42, fontSize: 10, color: "muted" });
   const cx2 = bx + 7.35, cw2 = bx + bw - 0.3 - cx2;
   deck.kicker(s, "AUDIENCE", cx2, by + 1.08, 3, "label");
   [["Côte d’Ivoire", 58], ["Diaspora abroad", 24], ["Rest of Africa", 18]].forEach(([t, pct], i) => {
@@ -425,10 +447,10 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
       ["Partner B", "31", "4 min 25 s", "12.7M FCFA"],
       ["Partner C", "18", "2 min 40 s", "7.3M FCFA"],
     ],
-    { x: cx2, y: by + 2.8, w: cw2, colW: [0.9, 1.0, 1.0, cw2 - 2.9], rowH: 0.3, fontSize: 10, name: "Sample table by sponsor" });
-  T(s, "Sample layout. Figures are illustrative.", { x: bx + 0.3, y: by + 4.48, w: 4, h: 0.24, fontSize: 10, italic: true, bold: true, color: "label" });
-  T(s, [{ text: "←  Back to page 1", options: { hyperlink: { slide: 9, tooltip: "Reports on fixed dates" } } }],
-    { x: bx + bw - 2.3, y: by + 4.48, w: 2.0, h: 0.24, fontSize: 10, bold: true, color: "label", align: "right" });
+    { x: cx2, y: by + 2.8, w: cw2, colW: [1.05, 0.95, 1.0, cw2 - 3.0], rowH: 0.3, fontSize: 10, name: "Sample table by sponsor" });
+  T(s, "Sample layout. Figures are illustrative.", { x: bx + 0.3, y: by + 4.53, w: 4, h: 0.24, fontSize: 10, italic: true, bold: true, color: "label" });
+  T(s, [{ text: "←  Back to page 1", options: { hyperlink: { slide: 8, tooltip: "Back to the report" } } }],
+    { x: bx + bw - 2.3, y: by + 4.53, w: 2.0, h: 0.24, fontSize: 10, bold: true, color: "label", align: "right" });
 
   const out = path.join(WORK, "AToure Mother Africa Festival Proposal.pptx");
   await deck.save(out);

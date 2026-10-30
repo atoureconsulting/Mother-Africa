@@ -101,3 +101,18 @@ festival sees exactly what each creator is paid. Fees were left blank.
 Pricing for the trial, the retainer and the report on its own is still an
 open question in `offers/creator-visibility-offer/pitch-playbook.md` (AToure
 repo).
+
+## 7. The seven metrics, and how each is captured
+
+Taken off the deck when the report slides were merged. The sample report
+(slide 8 and the appendix) now shows the same ground with figures.
+
+| What we measure | What it tells the festival | How we capture it |
+|---|---|---|
+| Views and reach | How far festival content travelled | Screen recorded analytics from every creator |
+| Interactions | Whether people cared enough to react | Likes, comments, shares and saves, per post and per creator |
+| Audiences | Who watched, and from where | Countries, Côte d'Ivoire and diaspora, age and gender |
+| Tickets | Which creators drove ticket sales | Tracked links to maf.tikerama.com, and codes where supplied |
+| Festival accounts | New followers for Mother Africa | Account growth through the build up and the nights |
+| Conversation | How much people talk about the festival | Hashtag and mention tracking |
+| Sponsor value | What each partner received | On screen moments, screen time, estimated media value |

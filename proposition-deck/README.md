@@ -7,12 +7,13 @@ on the structure of the PFL Africa and AML decks.
 
 | File | What it is |
 |---|---|
-| `AToure Mother Africa Festival Proposal.pdf` | The 11 slide deck plus an appendix (sample report, page 2), brand fonts embedded |
-| `AToure Mother Africa Festival Proposal.pptx` | The editable master (needs Cormorant Garamond and Jost installed) |
+| `AToure Mother Africa Festival Proposal.pdf` | English: 11 slides plus an appendix (sample report, page 2). The file to send |
+| `AToure Mother Africa Festival Proposition.pdf` | French version of the same deck |
+| `AToure Mother Africa Festival Proposal.pptx`, `...Proposition.pptx` | Editable masters (need Cormorant Garamond and Jost installed). They carry the speaker notes, so send the PDF |
 | `ai-photo-prompts.md` | Generative image prompts for more media, slide by slide |
 | `ideas-held-back.md` | Internal: ideas kept off the slides until something is signed |
 | `research-slide-2.md` | Internal: the figures on slide 2, with sources and conflicts |
-| `build/` | Build script, Mother Africa theme, theme card, source images |
+| `build/` | Build script, French map (`make_fr_map.py`, `fr.json`), Mother Africa theme, theme card, source images |
 | `archive/v1-slides-artifact/` | The first version, made in the Slides editor |
 
 ## Rebuild
@@ -25,7 +26,14 @@ node $SKILL/scripts/prep_images.js images.json
 SKILL=$SKILL node build.js
 bash $SKILL/scripts/render.sh "AToure Mother Africa Festival Proposal.pptx" render
 python3 $SKILL/scripts/check_deck.py "AToure Mother Africa Festival Proposal.pptx"
+# French: rebuild the map from the current English, apply it, build
+python3 $SKILL/scripts/translate.py extract build.js strings.json && python3 make_fr_map.py
+python3 $SKILL/scripts/translate.py apply build.js fr.json build-fr.js --lang fr-FR
+SKILL=$SKILL node build-fr.js
 ```
+
+`make_fr_map.py` stops with an error if an English string it translates has
+changed, so the French never ships half translated.
 
 The skill is on the `claude/affectionate-curie-cnb8uj` branch of
 `atoureconsulting/atoure`, under `.claude/skills/atoure-deck/`.
@@ -40,5 +48,8 @@ The skill is on the `claude/affectionate-curie-cnb8uj` branch of
 - What the 1 billion FCFA sponsorship figure measures (no public source).
 - The 2026 dates: the poster says 27 and 28 December, Pulse says 26 and 27.
 - Tracked links and codes with Tikerama.
+- What slide 4 says Mother Africa provides: accreditation and access zones,
+  brand guidelines and key messages, ticket links, one production contact.
+- Slide 9 frames the work as a trial for the 5th edition, with no price.
 - The Mother Africa logo is cut from the 2025 poster; swap in the official
   file when it arrives.

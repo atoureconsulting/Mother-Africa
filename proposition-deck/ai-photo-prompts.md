@@ -154,7 +154,7 @@ area in design, as was done for the FIF pass.
 **After:** add a real sponsor's logo to the backdrop wall only with that
 sponsor's written approval. Otherwise leave it plain.
 
-### 8. The afterglow edit (slides 6 and 9)
+### 8. The afterglow edit (slides 6 and 8)
 
 **Format:** 16:9.
 
@@ -166,7 +166,7 @@ sponsor's written approval. Otherwise leave it plain.
 > across the Ébrié lagoon blurred in the background. Calm, satisfied mood.
 > 50 mm lens, f/2. [style block]
 
-### 9. The visibility report on a desk (slides 8 and 9)
+### 9. The visibility report on a desk (slide 8 or the proposal, slide 9)
 
 **Format:** 16:9, top down.
 
