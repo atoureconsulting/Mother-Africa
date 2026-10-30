@@ -284,7 +284,7 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
 
   // 9. Reports on fixed dates
   s = deck.content("CONTENT_LIGHT", "THE VISIBILITY REPORT", "Reports on fixed dates",
-    "Three fixed dates. A one page weekly pulse during the build up, so effort moves to the creators who are working. A check 48 hours after the festival: who posted, where, against which brief. The full report on day 14, by 11 January 2027, as a PDF for the board and sponsors with a web version. The page on the right is a sample layout only; it shows no figures.",
+    "Three fixed dates. A one page weekly pulse during the build up, so effort moves to the creators who are working. A check 48 hours after the festival: who posted, where, against which brief. The full report on day 14, by 11 January 2027, as a PDF for the board and sponsors with a web version. The page on the right is a sample layout: its figures are illustrative, to show the format, and are not a forecast for the festival.",
     undefined);
   brand(s, false);
   [
@@ -299,26 +299,27 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
     T(s, body, { x: 1.5, y: y + 0.75, w: 5.6, h: 0.6, fontSize: 14, color: "muted" });
   });
   T(s, "Delivered as a PDF for the board and sponsors, with a web version.", { x: 1.5, y: 6.4, w: 5.6, h: 0.3, fontSize: 12, color: "label" });
-  // Sample report page, drawn: structure only, no figures.
+  // Sample report page, drawn with illustrative figures, labelled as such.
   const rx = 7.6, ry = 1.95, rw = 5.13;
   s.addShape(pres.ShapeType.roundRect, { x: rx, y: ry, w: rw, h: 4.8, rectRadius: 0.08, fill: { color: C.paper }, line: { color: C.muted, width: 0.75, transparency: 72 }, shadow: deck.shadow() });
   T(s, "VISIBILITY REPORT", { x: rx + 0.3, y: ry + 0.25, w: 3, h: 0.22, fontSize: 9, bold: true, charSpacing: 3, color: "label" });
   T(s, "Mother Africa Festival 2026", { x: rx + 0.3, y: ry + 0.47, w: 4, h: 0.4, fontFace: deck.HEAD, fontSize: 18, color: "ink" });
   mafLogo(s, false, rx + rw - 0.85, ry + 0.25, 0.42);
   deck.line(s, rx + 0.3, ry + 0.95, rw - 0.6, 0, { color: "gold", width: 1 });
-  ["Total views", "Accounts reached", "Posts checked", "Creators"].forEach((t, i) => {
+  [["3,200,000", "Total views"], ["1,450,000", "Accounts reached"], ["64", "Posts checked against the brief"], ["18", "Creators"]].forEach(([v, t], i) => {
     const x = rx + 0.3 + (i % 2) * 2.32, y = ry + 1.15 + Math.floor(i / 2) * 0.95;
     s.addShape(pres.ShapeType.roundRect, { x, y, w: 2.2, h: 0.8, rectRadius: 0.06, fill: { color: C.canvas }, line: { type: "none" } });
-    s.addShape(pres.ShapeType.roundRect, { x: x + 0.18, y: y + 0.16, w: 1.1, h: 0.22, rectRadius: 0.04, fill: { color: C.muted, transparency: 72 }, line: { type: "none" } });
-    T(s, t, { x: x + 0.18, y: y + 0.46, w: 1.9, h: 0.22, fontSize: 10, color: "muted" });
+    T(s, v, { x: x + 0.18, y: y + 0.08, w: 1.9, h: 0.38, fontSize: 18, bold: true, color: "ink" });
+    T(s, t, { x: x + 0.18, y: y + 0.48, w: 1.95, h: 0.22, fontSize: 10, color: "muted" });
   });
   T(s, "VIEWS BY PLATFORM", { x: rx + 0.3, y: ry + 3.1, w: 3, h: 0.22, fontSize: 9, bold: true, charSpacing: 3, color: "label" });
-  [["Instagram", 2.9], ["TikTok", 2.2], ["YouTube", 1.1]].forEach(([t, len], i) => {
-    const y = ry + 3.42 + i * 0.36;
+  [["Instagram", 52], ["TikTok", 38], ["YouTube", 10]].forEach(([t, pct], i) => {
+    const y = ry + 3.42 + i * 0.36, len = 2.7 * pct / 52;
     T(s, t, { x: rx + 0.3, y, w: 1.1, h: 0.24, fontSize: 10, color: "muted", valign: "middle" });
     s.addShape(pres.ShapeType.roundRect, { x: rx + 1.45, y: y + 0.04, w: len, h: 0.16, rectRadius: 0.03, fill: { color: i === 0 ? C.client : C.gold }, line: { type: "none" } });
+    T(s, pct + "%", { x: rx + 1.55 + len, y, w: 0.6, h: 0.24, fontSize: 10, bold: true, color: "ink", valign: "middle" });
   });
-  T(s, "Sample layout. No figures shown.", { x: rx + 0.3, y: ry + 4.48, w: 4, h: 0.22, fontSize: 10, italic: true, color: "muted" });
+  T(s, "Sample layout. Figures are illustrative.", { x: rx + 0.3, y: ry + 4.48, w: 4.5, h: 0.22, fontSize: 10, italic: true, bold: true, color: "label" });
 
   deck.section("Proof");
   // 10. Track record
