@@ -326,26 +326,24 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
     "This is not a new capability. In Abidjan, AToure built the IShowSpeed operation from zero. In Morocco it delivered the AFCON mascot reveal with CAF and the Royal Moroccan Football Federation. The Ashton Hall tour covered five countries, managed end to end.",
     stripesFooter);
   brand(s, true);
-  const ph = 3.0, py = 1.95;
+  // Three photos at their own ratios, one height, spread across the full width.
+  const ph = 3.75, py = 1.95;
   const proof = [
     ["speed_ci", "IShowSpeed in Côte d’Ivoire, Abidjan", "Abidjan", "55.8M", "Instagram views on one reel. IShowSpeed in Côte d’Ivoire."],
-    ["speed_ma", "IShowSpeed in Morocco for the AFCON 2025 Final", "Morocco", "16M", "Live stream views of the AFCON mascot reveal, with CAF and the FRMF."],
+    ["speed_ma", "IShowSpeed in Morocco for the AFCON 2025 Final", "Morocco, AFCON Final", "16M", "Live stream views of the AFCON mascot reveal."],
     ["ashton", "Ashton Hall Africa Tour, Nigeria leg", "Lagos", "1.57B", "Tour views across five countries, managed end to end."],
   ];
+  const widths = proof.map(([key]) => ph * deck.manifest[key].w / deck.manifest[key].h);
+  const gap = (CW - widths.reduce((a, b) => a + b, 0)) / (proof.length - 1);
   let px = M;
-  proof.forEach(([key, alt, place, fig, label]) => {
-    const p = deck.photo(s, key, { x: px, y: py, h: ph, alt });
+  proof.forEach(([key, alt, place, fig, label], i) => {
+    deck.photo(s, key, { x: px, y: py, h: ph, alt });
     deck.chip(s, place, px + 0.12, py + ph - 0.44);
-    T(s, fig, { x: px, y: 5.1, w: p.w, h: 0.5, fontSize: 28, color: "highlight" });
-    T(s, label, { x: px, y: 5.62, w: p.w, h: 0.75, fontSize: 11, color: "tint" });
-    px += p.w + 0.3;
+    T(s, fig, { x: px, y: 5.82, w: widths[i], h: 0.45, fontSize: 26, color: "highlight" });
+    T(s, label, { x: px, y: 6.27, w: widths[i], h: 0.38, fontSize: 10.5, color: "tint" });
+    px += widths[i] + gap;
   });
-  const dx = px + 0.05, dw = R - dx;
-  s.addShape(pres.ShapeType.roundRect, { x: dx, y: py, w: dw, h: ph, rectRadius: 0.1, fill: { color: C.panel }, line: { color: C.gold, width: 0.75, transparency: 55 } });
-  deck.kicker(s, "WHAT ATOURE DID", dx + 0.22, py + 0.25, dw - 0.4, "gold");
-  bullets(s, ["Operations built from zero in Abidjan", "State visas, permits and security", "Sponsors and partners brought in", "Creators managed end to end"],
-    { x: dx + 0.22, y: py + 0.7, w: dw - 0.4, h: 2.15, fontSize: 12, color: "tint", paraSpaceAfter: 8 });
-  T(s, "Sources: Instagram and YouTube analytics, tour figures supplied by the client.", { x: M, y: 6.5, w: CW, h: 0.26, fontSize: 10, color: "tint" });
+  T(s, "Sources: Instagram and YouTube analytics, tour figures supplied by the client.", { x: M, y: 6.72, w: CW, h: 0.22, fontSize: 9, color: "tint" });
 
   // 11. The ask
   deck.section("The ask");
