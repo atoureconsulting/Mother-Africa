@@ -7,7 +7,7 @@ on the structure of the PFL Africa and AML decks.
 
 | File | What it is |
 |---|---|
-| `AToure Mother Africa Festival Proposal.pdf` | English: 11 slides plus an appendix (sample report, page 2). The file to send |
+| `AToure Mother Africa Festival Proposal.pdf` | English, 11 slides. The file to send |
 | `AToure Mother Africa Festival Proposition.pdf` | French version of the same deck |
 | `AToure Mother Africa Festival Proposal.pptx`, `...Proposition.pptx` | Editable masters (need Cormorant Garamond and Jost installed). They carry the speaker notes, so send the PDF |
 | `ai-photo-prompts.md` | Generative image prompts for more media, slide by slide |
@@ -41,9 +41,9 @@ The skill is on the `claude/affectionate-curie-cnb8uj` branch of
 
 ## To confirm before sending
 
-- The dates the deck commits to: confirm this week, shortlist by 13
-  November, creators briefed by 20 November, build up live from 23 November,
-  48 hour check by 30 December, full report by 11 January 2027.
+- The dates the deck still commits to: build up from 23 November on slide 6,
+  the 48 hour check by 30 December and the full report by 11 January 2027 on
+  slide 8. The ask on slide 11 carries no dates.
 - The Ashton Hall figure (1.57 billion tour views, as in the PFL and AML
   decks; the website now uses the media kit figure).
 - What the 1 billion FCFA sponsorship figure measures (no public source).
@@ -51,7 +51,11 @@ The skill is on the `claude/affectionate-curie-cnb8uj` branch of
 - Tracked links and codes with Tikerama.
 - What slide 4 says Mother Africa provides: accreditation and access zones,
   brand guidelines and key messages, ticket links, one production contact.
-- Slide 9 frames the work as a trial for the 5th edition, with no price.
+- Slide 9 frames the work as a trial for the 5th edition, with no price, and
+  says creators the festival already works with stay and go on a contract
+  with deliverables.
+- Slide 10 cuts the three proof photos to one card shape, as on the PFL
+  deck, keeping each subject in frame.
 - The Mother Africa logo is cut from the 2025 poster; swap in the official
   file when it arrives.
 - Illustrations: the cover and slides 5, 6 and 9 use AI images (the notes

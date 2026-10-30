@@ -94,5 +94,23 @@
   "w": 446,
   "h": 340,
   "src": "./src/ai-afterglow-edit.jpg"
+ },
+ "card_ci": {
+  "file": "card_ci.jpg",
+  "w": 1781,
+  "h": 1252,
+  "src": "./src/ishowspeed-cote-divoire.webp"
+ },
+ "card_ma": {
+  "file": "card_ma.jpg",
+  "w": 1202,
+  "h": 845,
+  "src": "./src/ishowspeed-morocco.webp"
+ },
+ "card_ashton": {
+  "file": "card_ashton.jpg",
+  "w": 1360,
+  "h": 956,
+  "src": "./src/ashton-hall-nigeria.webp"
  }
 }

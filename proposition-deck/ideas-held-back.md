@@ -116,3 +116,16 @@ Taken off the deck when the report slides were merged. The sample report
 | Festival accounts | New followers for Mother Africa | Account growth through the build up and the nights |
 | Conversation | How much people talk about the festival | Hashtag and mention tracking |
 | Sponsor value | What each partner received | On screen moments, screen time, estimated media value |
+
+## 8. Taken off in the last round
+
+- **Weekly pulse:** a one page update every Monday during the build up
+  (posts live, views, top creators, ticket links used, what changes next).
+  Slide 8 now says every build up post is tracked instead.
+- **Sample report, page 2:** a linked appendix slide breaking the
+  illustrative figures down by creator, audience and sponsor. Slide 8 now
+  says the full report runs to several pages. The slide is in the git
+  history of `build/build.js`.
+- **Dates on the ask:** this week, 13, 20 and 23 November. The working plan
+  is in section 5.
+

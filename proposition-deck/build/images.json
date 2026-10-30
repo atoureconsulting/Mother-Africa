@@ -39,6 +39,27 @@
     },
     "ai_afterglow": {
       "src": "./src/ai-afterglow-edit.jpg"
+    },
+    "card_ci": {
+      "src": "./src/ishowspeed-cote-divoire.webp",
+      "trim": {
+        "left": 10,
+        "right": 9
+      }
+    },
+    "card_ma": {
+      "src": "./src/ishowspeed-morocco.webp",
+      "trim": {
+        "top": 215,
+        "bottom": 740
+      }
+    },
+    "card_ashton": {
+      "src": "./src/ashton-hall-nigeria.webp",
+      "trim": {
+        "top": 450,
+        "bottom": 294
+      }
     }
   },
   "logos": {
