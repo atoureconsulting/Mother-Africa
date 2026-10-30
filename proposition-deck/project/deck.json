@@ -1,0 +1,22 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-10-30T10:40:00Z"},
+  "lists": "css",
+  "title": "Mother Africa × AToure — Creator Proposition",
+  "cover": "cover",
+  "order": ["cover", "moment", "insight", "offer", "mix", "formats", "manage", "hub", "waves", "sponsors", "measure", "cadence", "plan", "invest", "next"],
+  "sections": {
+    "s1": {"description": "Why creators, and why the 5th edition", "start": "cover"},
+    "s2": {"description": "The proposition in three parts", "start": "offer"},
+    "s3": {"description": "Creators: who we bring and what they make", "start": "mix"},
+    "s4": {"description": "Creator management, from scouting to payment", "start": "manage"},
+    "s5": {"description": "Visibility for the festival and its sponsors", "start": "waves"},
+    "s6": {"description": "Reporting: what we measure and when you get it", "start": "measure"},
+    "s7": {"description": "Plan, investment and next steps", "start": "plan"}
+  },
+  "faces": {
+    "bricolage-grotesque": {"family": "Bricolage Grotesque", "href": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400..800&display=swap"},
+    "dm-sans": {"family": "DM Sans", "href": "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..700&display=swap"}
+  },
+  "designSystems": []
+}
