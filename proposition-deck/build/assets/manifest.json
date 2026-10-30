@@ -58,5 +58,41 @@
   "w": 1600,
   "h": 900,
   "src": "./src/stripes.png"
+ },
+ "ai_phone": {
+  "file": "ai_phone.jpg",
+  "w": 1536,
+  "h": 1024,
+  "src": "./src/ai-phone-filming-the-stage.jpg"
+ },
+ "ai_briefing": {
+  "file": "ai_briefing.jpg",
+  "w": 1672,
+  "h": 941,
+  "src": "./src/ai-backstage-briefing.jpg"
+ },
+ "ai_floor": {
+  "file": "ai_floor.jpg",
+  "w": 1672,
+  "h": 940,
+  "src": "./src/ai-creator-on-the-floor.jpg"
+ },
+ "ai_grwm": {
+  "file": "ai_grwm.jpg",
+  "w": 1536,
+  "h": 1024,
+  "src": "./src/ai-get-ready-with-me.jpg"
+ },
+ "ai_pass": {
+  "file": "ai_pass.jpg",
+  "w": 1448,
+  "h": 1086,
+  "src": "./src/ai-creator-pass.jpg"
+ },
+ "ai_afterglow": {
+  "file": "ai_afterglow.jpg",
+  "w": 446,
+  "h": 340,
+  "src": "./src/ai-afterglow-edit.jpg"
  }
 }

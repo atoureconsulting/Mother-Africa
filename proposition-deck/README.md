@@ -13,6 +13,7 @@ on the structure of the PFL Africa and AML decks.
 | `ai-photo-prompts.md` | Generative image prompts for more media, slide by slide |
 | `ideas-held-back.md` | Internal: ideas kept off the slides until something is signed |
 | `research-slide-2.md` | Internal: the figures on slide 2, with sources and conflicts |
+| `media/ai-generated/` | AI images, full size and the 11 grid crops (see its README) |
 | `build/` | Build script, French map (`make_fr_map.py`, `fr.json`), Mother Africa theme, theme card, source images |
 | `archive/v1-slides-artifact/` | The first version, made in the Slides editor |
 
@@ -53,3 +54,9 @@ The skill is on the `claude/affectionate-curie-cnb8uj` branch of
 - Slide 9 frames the work as a trial for the 5th edition, with no price.
 - The Mother Africa logo is cut from the 2025 poster; swap in the official
   file when it arrives.
+- Illustrations: the cover and slides 5, 6 and 9 use AI images (the notes
+  say so). The pass on slide 9 carries an AI drawn Mother Africa logo,
+  kept by choice. The square poster concept is not used: its lettering is
+  garbled.
+- The French cover title reads "Mother Africa, plus visible que jamais",
+  shorter than a word for word translation so it fits on two lines.

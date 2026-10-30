@@ -1,17 +1,55 @@
 {
   "outDir": "./assets",
   "photos": {
-    "poster2026": { "src": "./src/poster-2026-davido.jpg" },
-    "poster2025": { "src": "./src/poster-2025.jpg" },
-    "crowd":      { "src": "./src/crowd-live.jpg" },
-    "press":      { "src": "./src/press-launch.jpg" },
-    "speed_ci":   { "src": "./src/ishowspeed-cote-divoire.webp" },
-    "speed_ma":   { "src": "./src/ishowspeed-morocco.webp" },
-    "ashton":     { "src": "./src/ashton-hall-nigeria.webp" }
+    "poster2026": {
+      "src": "./src/poster-2026-davido.jpg"
+    },
+    "poster2025": {
+      "src": "./src/poster-2025.jpg"
+    },
+    "crowd": {
+      "src": "./src/crowd-live.jpg"
+    },
+    "press": {
+      "src": "./src/press-launch.jpg"
+    },
+    "speed_ci": {
+      "src": "./src/ishowspeed-cote-divoire.webp"
+    },
+    "speed_ma": {
+      "src": "./src/ishowspeed-morocco.webp"
+    },
+    "ashton": {
+      "src": "./src/ashton-hall-nigeria.webp"
+    },
+    "ai_phone": {
+      "src": "./src/ai-phone-filming-the-stage.jpg"
+    },
+    "ai_briefing": {
+      "src": "./src/ai-backstage-briefing.jpg"
+    },
+    "ai_floor": {
+      "src": "./src/ai-creator-on-the-floor.jpg"
+    },
+    "ai_grwm": {
+      "src": "./src/ai-get-ready-with-me.jpg"
+    },
+    "ai_pass": {
+      "src": "./src/ai-creator-pass.jpg"
+    },
+    "ai_afterglow": {
+      "src": "./src/ai-afterglow-edit.jpg"
+    }
   },
   "logos": {
-    "maf_light":  { "src": "./src/maf-logo.png" },
-    "maf_dark":   { "src": "./src/maf-logo-dark.png" },
-    "stripes":    { "src": "./src/stripes.png" }
+    "maf_light": {
+      "src": "./src/maf-logo.png"
+    },
+    "maf_dark": {
+      "src": "./src/maf-logo-dark.png"
+    },
+    "stripes": {
+      "src": "./src/stripes.png"
+    }
   }
 }

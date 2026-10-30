@@ -28,7 +28,7 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
     repeat: ["LuRepeat", "ink"], pulse: ["LuActivity", "ink"], clock: ["LuClock", "ink"],
     badge: ["LuBadgeCheck", "ink"], mega: ["LuMegaphone", "ink"],
   });
-  deck.layouts({ coverTitleW: 7.6, coverTitleSize: 50 });
+  deck.layouts({ coverTitleW: 5.3, coverTitleSize: 46 });
 
   const asset = (key) => path.join(WORK, "assets", deck.manifest[key].file);
   const stripes = (s) => s.addImage({ path: asset("stripes"), x: 0, y: 0, w: W, h: H, altText: "", objectName: "Background stripes" });
@@ -70,22 +70,25 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
     }, x0 + 0.3);
   };
 
-  // 1. Cover
+  // 1. Cover: full bleed illustration, long soft fade under the title column
   deck.section("Opening");
   let s = deck.cover(
     "Maximising Mother Africa visibility",
-    "A proposal for the 5th edition of Mother Africa Festival: talent access, creator management on the ground and one visibility report.\n27 and 28 December 2026, Marcory Zone 4, Abidjan.",
-    "Thank the Mother Africa team for the time. This proposal is about one thing: making the visibility that creators bring to the festival provable, so the festival can show it to sponsors. Everything on the next slide comes from the festival’s own posters and press material, so ask the team to correct anything we have wrong.",
+    null,
+    "Thank the Mother Africa team for the time. This proposal is about one thing: making the visibility that creators bring to the festival provable, so the festival can show it to sponsors. Everything on the next slide comes from the festival’s own posters and press material, so ask the team to correct anything we have wrong. The pictures on the cover and on slides 5, 6 and 9 are illustrations, not photographs of the festival.",
     (s) => {
-      stripes(s);
-      const h = 4.6, w = h * 386 / 518, x = R - w, y = (H - h) / 2;
-      s.addShape(pres.ShapeType.rect, { x: x - 0.16, y: y + 0.16, w, h, fill: { type: "none" }, line: { color: C.gold, width: 1.25 } });
-      deck.photo(s, "poster2026", { x, y, h, alt: "Mother Africa Festival 2026 poster: Davido, 27 and 28 December, Marcory Zone 4, Abidjan, 5th edition anniversary" });
+      const cw0 = W, ch0 = cw0 * deck.manifest.ai_phone.h / deck.manifest.ai_phone.w;
+      deck.photo(s, "ai_phone", { x: 0, y: (H - ch0) / 2, w: cw0, alt: "Illustration: a festival goer films the stage on her phone, among a crowd of raised phones" });
+      deck.fadeImage(s, "ltr", 0, 0, 7.6, H, { power: 0.75 });
+      deck.fadeImage(s, "btt", 0, H - 2.2, W, 2.2, { power: 1.2, max: 0.7 });
     });
   T(s, "atoureconsulting.com", { x: M, y: 0.45, w: 4, h: 0.26, fontSize: 10, color: "tint" });
   deck.logo(s, "dark", M, 1.5, 2.6);
   T(s, "×", { x: 3.3, y: 1.38, w: 0.4, h: 0.4, fontSize: 20, color: "gold", align: "center", valign: "middle" });
   mafLogo(s, true, 3.8, 1.1, 0.95);
+  T(s, "A proposal for the 5th edition of Mother Africa Festival: talent access, creator management on the ground and one visibility report.",
+    { x: M, y: 4.62, w: 4.9, h: 0.95, fontSize: 15, color: "paper", lineSpacingMultiple: 1.15 });
+  T(s, "27 and 28 December 2026, Marcory Zone 4, Abidjan.", { x: M, y: 5.62, w: 4.9, h: 0.3, fontSize: 15, bold: true, color: "highlight" });
   deck.line(s, M, 6.3, 1.6, 0, { color: "client", width: 2 });
   T(s, "Prepared by Baba Touré, Director  ·  30.10.2026", { x: M, y: 6.45, w: 7, h: 0.3, fontSize: 12, color: "highlight" });
 
@@ -220,43 +223,44 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
     T(s, "and more…", { x: x + 0.25, y: 4.45, w: 1.75, h: 0.28, fontSize: 13, italic: true, bold: true, color: "label" });
     if (i < steps.length - 1) deck.arrow(s, x + 2.2, 2.45, x + 2.45, 2.45, { color: "gold" });
   });
-  s.addShape(pres.ShapeType.roundRect, { x: M, y: 5.15, w: 6.0, h: 1.6, rectRadius: 0.1, fill: { color: C.ink }, line: { type: "none" } });
-  deck.kicker(s, "AFTER THE FESTIVAL", 0.9, 5.3, 5, "gold");
-  bullets(s, ["Every creator checked against the brief within 48 hours", "Analytics collected by screen recording, not screenshots"],
-    { x: 0.9, y: 5.62, w: 5.5, h: 0.6, fontSize: 13, color: "paper", paraSpaceAfter: 4 });
+  s.addShape(pres.ShapeType.roundRect, { x: M, y: 5.15, w: 5.0, h: 1.6, rectRadius: 0.1, fill: { color: C.ink }, line: { type: "none" } });
+  deck.kicker(s, "AFTER THE FESTIVAL", 0.9, 5.3, 4.4, "gold");
+  bullets(s, ["Every creator checked against the brief in 48 hours", "Analytics collected by screen recording"],
+    { x: 0.9, y: 5.62, w: 4.55, h: 0.6, fontSize: 12, color: "paper", paraSpaceAfter: 4 });
   T(s, "and more…", { x: 0.9, y: 6.3, w: 3, h: 0.28, fontSize: 13, italic: true, bold: true, color: "gold" });
+  const bp = deck.photo(s, "ai_briefing", { x: M + 5.3, y: 5.15, h: 1.6, alt: "Illustration: a production manager briefs creators with a tablet backstage before the doors open" });
+  const ax3 = bp.x + bp.w + 0.3;
   [
     "One point of contact for the festival team",
     "A shared tracker of every creator and every post",
     "Brand safety rules agreed with you before anyone posts",
   ].forEach((t, i) => {
-    const y = 5.25 + i * 0.52;
-    deck.icon(s, "checkL", 6.95, y + 0.02, 0.3);
-    T(s, t, { x: 7.4, y, w: 5.3, h: 0.4, fontSize: 14, color: "ink" });
+    const y = 5.15 + i * 0.55;
+    deck.icon(s, "checkL", ax3, y + 0.02, 0.28);
+    T(s, t, { x: ax3 + 0.4, y, w: R - ax3 - 0.4, h: 0.48, fontSize: 12.5, color: "ink" });
   });
 
   // 6. Three waves
   deck.section("Visibility");
   s = deck.content("CONTENT_DARK", "VISIBILITY", "Visibility builds in three waves",
-    "Visibility comes in three waves. The build up runs about five weeks and has one job: sell tickets. The two festival nights are about live reach, making people who are not there wish they were. The afterglow keeps Mother Africa in feeds into January and gives sponsors content to point to. If the festival plans a 2027 announcement, the afterglow is where it lands.",
+    "Visibility comes in three waves. The build up runs about five weeks and has one job: sell tickets. The two festival nights are about live reach, making people who are not there wish they were. The afterglow keeps Mother Africa in feeds into January and gives sponsors content to point to. If the festival plans a 2027 announcement, the afterglow is where it lands. Every wave sits in one content calendar, approved by the festival before anything goes live. The pictures are illustrations.",
     stripesFooter);
   brand(s, true);
   deck.line(s, M, 2.15, CW, 0, { color: "gold", width: 1.5 });
   [
-    [4.613, "23 NOV TO 26 DEC", "Build up", "Goal: awareness and ticket sales", ["Creator lineup announced", "Davido countdown", "Weekly ticket pushes with tracked links", "A last call before Christmas"], false],
-    [3.46, "27 AND 28 DEC", "Festival nights", "Goal: live attention", ["Arrivals and festival looks", "Crowd POV during headline sets", "Sponsor activations in shot", "A recap each night"], true],
-    [3.46, "29 DEC TO 10 JAN", "Afterglow", "Goal: keep the story alive", ["Recap reels and best of edits", "Creator thank you posts", "Results shared with fans and partners", "A 2027 save the date, if planned"], false],
-  ].reduce((x, [w, dates, head, goal, items, hot]) => {
+    [4.613, "ai_grwm", "Illustration: a creator records a get ready with me video before the festival", "23 NOV TO 26 DEC", "Build up", "Goal: awareness and ticket sales", ["Creator lineup announced", "Davido countdown", "Weekly ticket pushes with tracked links", "A last call before Christmas"], false],
+    [3.46, "ai_floor", "Illustration: a creator films himself on a gimbal in the festival crowd", "27 AND 28 DEC", "Festival nights", "Goal: live attention", ["Arrivals and festival looks", "Crowd POV during headline sets", "Sponsor activations in shot", "A recap each night"], true],
+    [3.46, "ai_afterglow", "Illustration: a creator edits a recap reel on a balcony the morning after", "29 DEC TO 10 JAN", "Afterglow", "Goal: keep the story alive", ["Recap reels and best of edits", "Creator thank you posts", "Results shared with partners", "A 2027 save the date"], false],
+  ].reduce((x, [w, pic, alt, dates, head, goal, items, hot]) => {
     s.addShape(pres.ShapeType.ellipse, { x: x + 0.25, y: 2.0, w: 0.3, h: 0.3, fill: { color: hot ? C.client : C.gold }, line: { type: "none" } });
-    s.addShape(pres.ShapeType.roundRect, { x, y: 2.5, w, h: 3.25, rectRadius: 0.1, fill: { color: hot ? C.client : C.panel }, line: { type: "none" } });
-    deck.kicker(s, dates, x + 0.3, 2.78, w - 0.6, hot ? "ink" : "gold");
-    T(s, head, { x: x + 0.3, y: 3.12, w: w - 0.6, h: 0.5, fontFace: deck.HEAD, fontSize: 26, color: hot ? "ink" : "paper" });
-    T(s, goal, { x: x + 0.3, y: 3.7, w: w - 0.6, h: 0.35, fontSize: 14, bold: true, color: hot ? "ink" : "highlight" });
-    bullets(s, items, { x: x + 0.3, y: 4.2, w: w - 0.6, h: 1.45, fontSize: 13, color: hot ? "ink" : "tint" });
+    s.addShape(pres.ShapeType.roundRect, { x, y: 2.45, w, h: 4.3, rectRadius: 0.1, fill: { color: hot ? C.client : C.panel }, line: { type: "none" } });
+    deck.photo(s, pic, { x: x + 0.3, y: 2.72, h: 1.3, alt });
+    deck.kicker(s, dates, x + 0.3, 4.18, w - 0.6, hot ? "ink" : "gold");
+    T(s, head, { x: x + 0.3, y: 4.45, w: w - 0.6, h: 0.45, fontFace: deck.HEAD, fontSize: 24, color: hot ? "ink" : "paper" });
+    T(s, goal, { x: x + 0.3, y: 4.95, w: w - 0.6, h: 0.32, fontSize: 13, bold: true, color: hot ? "ink" : "highlight" });
+    bullets(s, items, { x: x + 0.3, y: 5.35, w: w - 0.6, h: 1.3, fontSize: 12.5, color: hot ? "ink" : "tint", paraSpaceAfter: 4 });
     return x + w + 0.3;
   }, M);
-  s.addShape(pres.ShapeType.rect, { x: M, y: 6.05, w: 0.06, h: 0.6, fill: { color: C.gold }, line: { type: "none" } });
-  T(s, "Every wave sits in one content calendar, approved by the festival before anything goes live.", { x: 0.85, y: 6.05, w: 11.8, h: 0.6, fontFace: deck.HEAD, fontSize: 20, color: "paper", valign: "middle" });
 
   // 7. Sponsors
   s = deck.content("CONTENT_LIGHT", "VISIBILITY", "Every sponsor gets visibility it can prove",
@@ -343,12 +347,12 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
   });
   T(s, "A trial, not a long term commitment. It is what earns the conversation about 2027.", { x: M, y: 6.05, w: 7.1, h: 0.55, fontFace: deck.HEAD, fontSize: 19, color: "label" });
   const kx = 8.15, kw = R - kx;
-  s.addShape(pres.ShapeType.roundRect, { x: kx, y: 1.95, w: kw, h: 4.65, rectRadius: 0.1, fill: { color: C.ink }, line: { type: "none" } });
-  const km = deck.manifest.maf_light, klh = 1.55, klw = klh * km.w / km.h;
-  mafLogo(s, true, kx + (kw - klw) / 2, 2.45, klh);
-  T(s, "×", { x: kx, y: 4.1, w: kw, h: 0.6, fontSize: 30, color: "gold", align: "center", valign: "middle" });
-  deck.logo(s, "dark", kx + (kw - 3.4) / 2, 4.9, 3.4);
-  T(s, "27 and 28 December 2026  ·  Marcory Zone 4", { x: kx, y: 5.85, w: kw, h: 0.3, fontSize: 11, color: "highlight", align: "center" });
+  const pass = deck.photo(s, "ai_pass", { x: kx, y: 1.95, w: kw, alt: "Illustration: a Mother Africa Festival creator accreditation pass on a lanyard" });
+  const sy = pass.y + pass.h + 0.15, sh = 6.6 - sy;
+  s.addShape(pres.ShapeType.roundRect, { x: kx, y: sy, w: kw, h: sh, rectRadius: 0.08, fill: { color: C.ink }, line: { type: "none" } });
+  mafLogo(s, true, kx + 0.3, sy + (sh - 0.62) / 2, 0.62);
+  T(s, "×", { x: kx + 1.25, y: sy, w: 0.4, h: sh, fontSize: 20, color: "gold", align: "center", valign: "middle" });
+  deck.logo(s, "dark", kx + 1.8, sy + (sh - 0.4) / 2, 2.5);
 
   deck.section("Proof");
   // 10. Track record
