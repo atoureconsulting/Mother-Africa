@@ -8,9 +8,9 @@ check before using the result.
 
 These come from the AToure deck builder (design system, section 10):
 
-- **Concept slides only.** Generated images can go on the cover, "Your
-  audience is already filming", the formats, management, waves and sponsor
-  slides, and the close. Never on proof slides: "Where we stand" and the
+- **Concept slides only.** Generated images can go on the cover, why now,
+  creator management, the waves and sponsor slides, the report slides and
+  the close. Never on proof slides: "Where we stand" and the
   track record use real photos only.
 - **No real people.** Do not generate Davido or any real artist or creator.
   Keep performers backlit, small or with their faces hidden. A fake likeness
@@ -70,7 +70,7 @@ quality, and keep the same seed across a set for a consistent look.
 
 **Check:** no recognisable performer, no readable banners on the stage.
 
-### 2. Every phone is a camera (slide 4)
+### 2. Every phone is a camera (slide 3, why now)
 
 **Format:** 3:2 landscape, at least 1800 px wide. This replaces the current
 low resolution crowd photo.
@@ -85,9 +85,10 @@ low resolution crowd photo.
 
 **Check:** five fingers, one phone, a believable picture on the screen.
 
-### 3. Festival looks, "get ready with me" (slide 6)
+### 3. Festival looks, "get ready with me" (spare)
 
-**Format:** 4:5 portrait or 3:2 landscape.
+**Format:** 4:5 portrait or 3:2 landscape. The formats slide is held back
+from this deck, so keep this one for social teasers or a later deck.
 
 > A stylish Ivorian content creator in her twenties records a get ready
 > with me video in a sunlit Abidjan apartment before a festival night. She
@@ -97,7 +98,7 @@ low resolution crowd photo.
 > the window. Candid, mid laugh, looking at her phone screen, not at the
 > camera. 35 mm lens, f/2. [style block]
 
-### 4. Creator on the festival floor (slides 6 and 8, "Festival nights")
+### 4. Creator on the festival floor (slide 6, "Festival nights")
 
 **Format:** 16:9.
 
@@ -108,7 +109,7 @@ low resolution crowd photo.
 > blurred; his face is sharp. 28 mm lens, f/2.8, energetic and candid.
 > [style block]
 
-### 5. The creator briefing backstage (slide 7, creator management)
+### 5. The creator briefing backstage (slide 5, creator management)
 
 **Format:** 16:9.
 
@@ -123,7 +124,7 @@ low resolution crowd photo.
 
 **Check:** the lanyards and the tablet screen carry no text.
 
-### 6. The creator accreditation pass (slide 7 or the close)
+### 6. The creator accreditation pass (slide 5 or the close)
 
 **Format:** 4:3 or 1:1, product shot.
 
@@ -138,7 +139,7 @@ low resolution crowd photo.
 **After:** place the real Mother Africa logo and "CREATOR" in the blank
 area in design, as was done for the FIF pass.
 
-### 7. A sponsor activation on camera (slide 9)
+### 7. A sponsor activation on camera (slide 7)
 
 **Format:** 16:9.
 
@@ -153,7 +154,7 @@ area in design, as was done for the FIF pass.
 **After:** add a real sponsor's logo to the backdrop wall only with that
 sponsor's written approval. Otherwise leave it plain.
 
-### 8. The afterglow edit (slides 8 and 11)
+### 8. The afterglow edit (slides 6 and 9)
 
 **Format:** 16:9.
 
@@ -165,7 +166,7 @@ sponsor's written approval. Otherwise leave it plain.
 > across the Ébrié lagoon blurred in the background. Calm, satisfied mood.
 > 50 mm lens, f/2. [style block]
 
-### 9. The visibility report on a desk (slides 10 and 11)
+### 9. The visibility report on a desk (slides 8 and 9)
 
 **Format:** 16:9, top down.
 
@@ -179,7 +180,7 @@ sponsor's written approval. Otherwise leave it plain.
 **Check:** nothing on the screen should read as a real figure. It is an
 illustration of the format, never a result.
 
-### 10. The VIP terrace for the close (slide 14)
+### 10. The VIP terrace for the close (slide 11)
 
 **Format:** 16:9, full bleed. Keep the left half darker for text.
 

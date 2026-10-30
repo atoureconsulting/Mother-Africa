@@ -1,10 +1,16 @@
-# Ideas kept for a future edition
+# Ideas held back from the deck
 
-These were in the first version of the proposal and were taken off the
-slides for the 5th edition pitch. They are kept here to bring back for a
-later edition, a retainer, or a bigger scope. The original slide files are in
-`archive/v1-slides-artifact/project/slides/` (`mix.html`, `manage.html`,
-`hub.html`, `invest.html`).
+Internal. Not for the client.
+
+This is the first time AToure is working with Mother Africa and nothing is
+signed yet, so the deck shows what AToure does, not every idea for how. The
+detail below stays with AToure until there is an agreement: to bring back in
+the briefs once signed, for a later edition, a retainer or a bigger scope.
+
+The original slide files are in `archive/v1-slides-artifact/project/slides/`
+(`mix.html`, `formats.html`, `manage.html`, `hub.html`, `plan.html`,
+`invest.html`). The second build, with the formats and plan slides, is in the
+git history of `build/build.js`.
 
 ## 1. Four tiers of creators
 
@@ -44,7 +50,44 @@ A small on site base for creators on both festival nights:
 Needs a small space and power from the venue; confirm the footprint with
 production.
 
-## 4. Investment: three packages
+## 4. What creators make: the content formats
+
+The formats AToure would brief, mapped to when they run. Removed from the
+deck so the client does not take the plan without AToure.
+
+| Phase | Format | What it is |
+|---|---|---|
+| Build up | Reveal reactions | Creators react to the lineup and the headliner announcement as they drop |
+| Build up | Ticket links | A tracked link to maf.tikerama.com for every creator, and a code where the festival supplies one |
+| Build up | Festival looks | Get ready with me outfits and styling that tease the nights ahead |
+| Festival nights | Crowd POV and stories | Live stories from the floor during headline sets and key moments |
+| Festival nights | Behind the scenes | Backstage and production moments, where the artists and the team agree |
+| Afterglow | Recap reels | Best of edits and "were you there?" posts that keep the story going |
+
+Backstage access is always agreed with the artists' teams and production
+first. Confirm with Tikerama in week one what tracked links and codes they
+support.
+
+## 5. The plan, week by week
+
+The working timeline, assuming a start on Monday 2 November 2026. The ask
+slide keeps only the four client dates (confirm this week, shortlist by 13
+November, briefed by 20 November, build up live from 23 November).
+
+| Workstream | Dates |
+|---|---|
+| Scout, vet and contract | 2 to 20 November |
+| Briefs and content calendar | 16 to 27 November |
+| Build up content | 23 November to 26 December |
+| Accreditation | 7 to 26 December |
+| Festival nights | 27 and 28 December |
+| Afterglow content | 29 December to 10 January |
+| Reporting | Weekly pulse from 30 November, 48 hour check by 30 December, full report on 11 January 2027 |
+
+Every week the start slips shortens the build up, which is where tickets are
+sold.
+
+## 6. Investment: three packages
 
 Management fee separate from creator fees, which pass through at cost so the
 festival sees exactly what each creator is paid. Fees were left blank.

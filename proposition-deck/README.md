@@ -7,10 +7,10 @@ on the structure of the PFL Africa and AML decks.
 
 | File | What it is |
 |---|---|
-| `AToure Mother Africa Festival Proposal.pdf` | The 14 slide deck to send, brand fonts embedded |
+| `AToure Mother Africa Festival Proposal.pdf` | The 11 slide deck to send, brand fonts embedded |
 | `AToure Mother Africa Festival Proposal.pptx` | The editable master (needs Cormorant Garamond and Jost installed) |
 | `ai-photo-prompts.md` | Generative image prompts for more media, slide by slide |
-| `future-editions.md` | Ideas taken off the slides, kept for a later edition |
+| `ideas-held-back.md` | Internal: ideas kept off the slides until something is signed |
 | `build/` | Build script, Mother Africa theme, theme card, source images |
 | `archive/v1-slides-artifact/` | The first version, made in the Slides editor |
 
@@ -31,7 +31,7 @@ The skill is on the `claude/affectionate-curie-cnb8uj` branch of
 
 ## To confirm before sending
 
-- The dates the deck commits to: start Monday 2 November, shortlist by 13
+- The dates the deck commits to: confirm this week, shortlist by 13
   November, creators briefed by 20 November, build up live from 23 November,
   48 hour check by 30 December, full report by 11 January 2027.
 - The Ashton Hall figure (1.57 billion tour views, as in the PFL and AML
