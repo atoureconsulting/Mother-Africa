@@ -51,6 +51,24 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
     T(s, text, { x, y, w, h: 0.32, fontSize: 10, bold: true, charSpacing: 1, color, align: "center", valign: "middle" });
   };
 
+  // The revenue model, drawn as on the PFL Africa and AML decks.
+  const revenueModel = (s, x0, y0, w0, h0) => {
+    s.addShape(pres.ShapeType.roundRect, { x: x0, y: y0, w: w0, h: h0, rectRadius: 0.08, fill: { color: C.ink }, line: { color: C.gold, width: 1.75 },
+      shadow: { type: "outer", color: deck.HEX.gold, opacity: 0.3, blur: 18, offset: 0, angle: 90 } });
+    T(s, "THE REVENUE MODEL", { x: x0 + 0.3, y: y0 + 0.22, w: 3.4, h: 0.4, fontSize: 17, bold: true, charSpacing: 1, color: "gold", valign: "middle" });
+    T(s, "WHERE THE NEW MONEY COMES FROM", { x: x0 + 3.0, y: y0 + 0.22, w: w0 - 3.3, h: 0.4, fontSize: 9.5, bold: true, charSpacing: 2, color: "paper", align: "right", valign: "middle" });
+    const links = [["More creators", 1], ["More visibility", 1], ["Brand KPIs met", 1], ["Sponsor and investor money", 1.25]];
+    const unit = (w0 - 0.6 - 3 * 0.32) / links.reduce((a, [, f]) => a + f, 0);
+    links.reduce((x, [label, f], i) => {
+      const w = unit * f, last = i === links.length - 1, y = y0 + 0.85;
+      s.addShape(pres.ShapeType.roundRect, { x, y, w, h: 0.8, rectRadius: 0.06, fill: { color: last ? C.gold : C.panel },
+        line: last ? { type: "none" } : { color: C.tint, width: 0.5, transparency: 75 } });
+      T(s, label.toUpperCase(), { x: x + 0.06, y, w: w - 0.12, h: 0.8, fontSize: 11.5, bold: true, color: last ? "ink" : "paper", align: "center", valign: "middle" });
+      if (!last) T(s, "→", { x: x + w, y, w: 0.32, h: 0.8, fontSize: 18, color: "gold", align: "center", valign: "middle" });
+      return x + w + 0.32;
+    }, x0 + 0.3);
+  };
+
   // 1. Cover
   deck.section("Opening");
   let s = deck.cover(
@@ -73,23 +91,39 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
   // 2. Where we stand
   deck.section("Where we stand");
   s = deck.content("CONTENT_LIGHT", "WHERE WE STAND", "Four editions in, this is already working",
-    "Everything on the left comes from the festival’s own posters and press material. Ask the team to correct anything we have wrong. The right side is what any festival needs once it starts selling its audience to sponsors. Present it as the next stage, not as a list of faults.");
+    "Everything on the left comes from public reporting and the festival’s own announcements, so ask the team to correct anything we have wrong. 15,000 and 40 percent are the figures reported for the first edition in December 2022. 20,000 is what the organisers expect for the 5th edition, not a result. The 1 billion FCFA figure is the festival’s weight as a sponsorship instrument. The right side is what any festival needs once it sells its audience to sponsors: present it as the next stage, not as a list of faults. Sources: Africa Radio, Music In Africa, Abidjan.net, Liferadio, France 24, Pulse and allAfrica.");
   brand(s, false);
-  const facts = [
-    ["cal", "Four editions", "The 4th edition ran at Marcory Zone 4 on 27 and 28 December 2025."],
-    ["mic", "Davido for year five", "Davido headlines the 5th edition, the festival’s anniversary year."],
-    ["hand", "Sponsors on board", "Partner brands already back the festival, as the press launch showed."],
-    ["ticket", "Tickets sold online", "Sales run online through maf.tikerama.com, ready for tracked links."],
-  ];
-  facts.forEach(([icon, head, body], i) => {
-    const x = M + (i % 2) * 3.5, y = 1.95 + Math.floor(i / 2) * 2.4;
-    deck.card(s, x, y, 3.25, 2.15);
-    deck.iconCircle(s, icon, x + 0.3, y + 0.3, 0.55, "client");
-    T(s, head, { x: x + 0.3, y: y + 0.98, w: 2.65, h: 0.38, fontFace: deck.HEAD, fontSize: 20, color: "ink" });
-    T(s, body, { x: x + 0.3, y: y + 1.4, w: 2.65, h: 0.7, fontSize: 13, color: "muted" });
+  const SW = 7.0, tw2 = (SW - 0.25) / 2;
+  [
+    ["15,000+", "Festival goers at the first edition, December 2022", false],
+    ["40%", "Of them came from other countries, as reported", false],
+    ["20,000+", "Expected at the 5th edition, according to the organisers", false],
+    ["1B+ FCFA", "Over 1 billion FCFA: the festival as a sponsorship instrument", true],
+  ].forEach(([fig, label, money], i) => {
+    const x = M + (i % 2) * (tw2 + 0.25), y = 1.95 + Math.floor(i / 2) * 1.38;
+    s.addShape(pres.ShapeType.rect, { x, y, w: tw2, h: 1.2, fill: { color: money ? C.ink : C.paper }, line: money ? { type: "none" } : { color: C.muted, width: 0.75, transparency: 72 } });
+    s.addShape(pres.ShapeType.rect, { x, y, w: tw2, h: 0.05, fill: { color: money ? C.client : C.gold }, line: { type: "none" } });
+    T(s, fig, { x: x + 0.25, y: y + 0.16, w: tw2 - 0.5, h: 0.5, fontSize: 28, bold: true, color: money ? "highlight" : "label" });
+    T(s, label, { x: x + 0.25, y: y + 0.7, w: tw2 - 0.45, h: 0.42, fontSize: 12, color: money ? "tint" : "muted" });
   });
-  s.addShape(pres.ShapeType.roundRect, { x: 7.75, y: 1.95, w: 4.98, h: 4.55, rectRadius: 0.1, fill: { color: C.ink }, line: { type: "none" } });
-  deck.kicker(s, "WHAT THE 5TH EDITION NEEDS", 8.05, 2.22, 4.4, "gold");
+  deck.kicker(s, "THE STORY SO FAR", M, 4.78, 4, "label");
+  deck.line(s, M, 5.3, SW, 0, { color: "gold", width: 1.5 });
+  [
+    ["2022", "First edition, 28 to 30 December in Abidjan"],
+    ["2023", "2nd edition: Aya Nakamura, Ayra Starr"],
+    ["2024", "3rd edition: Dadju and Tayc"],
+    ["2025", "4th edition: Gims, Asake. On France 24"],
+    ["2026", "5th edition: Davido headlines"],
+  ].forEach(([year, body], i) => {
+    const x = M + i * (SW / 5), last = i === 4;
+    s.addShape(pres.ShapeType.ellipse, { x, y: 5.22, w: 0.16, h: 0.16, fill: { color: last ? C.client : C.gold }, line: { type: "none" } });
+    T(s, year, { x, y: 5.45, w: 1.3, h: 0.26, fontSize: 13, bold: true, color: last ? "label" : "ink" });
+    T(s, body, { x, y: 5.74, w: 1.3, h: 0.7, fontSize: 10.5, color: "muted" });
+  });
+  T(s, "Sources: Africa Radio, Music In Africa, Abidjan.net, Liferadio, France 24, Pulse, allAfrica. 20,000+ is the organisers’ expected figure.",
+    { x: M, y: 6.55, w: SW, h: 0.3, fontSize: 9.5, italic: true, color: "muted" });
+  s.addShape(pres.ShapeType.roundRect, { x: 7.85, y: 1.95, w: R - 7.85, h: 4.65, rectRadius: 0.1, fill: { color: C.ink }, line: { type: "none" } });
+  deck.kicker(s, "WHAT THE 5TH EDITION NEEDS", 8.15, 2.22, 4.3, "gold");
   [
     "Creators chosen for the audiences the festival wants most",
     "Set deliverables and key messages for every creator",
@@ -97,9 +131,9 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
     "Sponsor visibility the festival can prove, partner by partner",
     "Festival numbers: views, audiences, the diaspora, tickets",
   ].forEach((t, i) => {
-    const y = 2.72 + i * 0.75;
-    deck.icon(s, "check", 8.05, y + 0.02, 0.28);
-    T(s, t, { x: 8.5, y, w: 3.95, h: 0.5, fontSize: 14, color: "paper" });
+    const y = 2.75 + i * 0.78;
+    deck.icon(s, "check", 8.15, y + 0.02, 0.28);
+    T(s, t, { x: 8.6, y, w: 3.85, h: 0.5, fontSize: 14, color: "paper" });
   });
 
   // 3. Why now: the anniversary, the audience already filming, and the revenue model
@@ -121,22 +155,7 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
     T(s, fig, { x: x + 0.2, y: y + 0.18, w: tw - 0.4, h: 0.5, fontSize: 28, bold: true, color: figColor });
     T(s, label, { x: x + 0.2, y: y + 0.72, w: tw - 0.35, h: 0.5, fontSize: 9.5, bold: true, charSpacing: 1, color: "tint" });
   });
-  // The revenue model, drawn as on the PFL Africa and AML decks.
-  const my = 4.45, mh = 1.9;
-  s.addShape(pres.ShapeType.roundRect, { x: M, y: my, w: LW, h: mh, rectRadius: 0.08, fill: { color: C.ink }, line: { color: C.gold, width: 1.75 },
-    shadow: { type: "outer", color: deck.HEX.gold, opacity: 0.3, blur: 18, offset: 0, angle: 90 } });
-  T(s, "THE REVENUE MODEL", { x: M + 0.3, y: my + 0.22, w: 3.4, h: 0.4, fontSize: 17, bold: true, charSpacing: 1, color: "gold", valign: "middle" });
-  T(s, "WHERE THE NEW MONEY COMES FROM", { x: M + 3.0, y: my + 0.22, w: LW - 3.3, h: 0.4, fontSize: 9.5, bold: true, charSpacing: 2, color: "paper", align: "right", valign: "middle" });
-  const links = [["More creators", 1], ["More visibility", 1], ["Brand KPIs met", 1], ["Sponsor and investor money", 1.25]];
-  const unit = (LW - 0.6 - 3 * 0.32) / links.reduce((a, [, f]) => a + f, 0);
-  links.reduce((x, [label, f], i) => {
-    const w = unit * f, last = i === links.length - 1, y = my + 0.85;
-    s.addShape(pres.ShapeType.roundRect, { x, y, w, h: 0.8, rectRadius: 0.06, fill: { color: last ? C.gold : C.panel },
-      line: last ? { type: "none" } : { color: C.tint, width: 0.5, transparency: 75 } });
-    T(s, label.toUpperCase(), { x: x + 0.06, y, w: w - 0.12, h: 0.8, fontSize: 11.5, bold: true, color: last ? "ink" : "paper", align: "center", valign: "middle" });
-    if (!last) T(s, "→", { x: x + w, y, w: 0.32, h: 0.8, fontSize: 18, color: "gold", align: "center", valign: "middle" });
-    return x + w + 0.32;
-  }, M + 0.3);
+  revenueModel(s, M, 4.45, LW, 1.9);
   // The audience is already filming.
   const ax = 8.45, aw = R - ax;
   s.addShape(pres.ShapeType.rect, { x: ax, y: 1.95, w: aw, h: 4.4, fill: { color: C.panel }, line: { type: "none" } });
@@ -226,22 +245,22 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
 
   // 7. Sponsors
   s = deck.content("CONTENT_LIGHT", "VISIBILITY", "Visibility for every sponsor",
-    "Sponsors are paying for visibility, and creators are one of the best ways to deliver it. Sponsor mentions go into every brief, creators are guided to each activation and stage banner on both nights, and every partner gets its own page in the report. That page is what helps the festival renew its sponsors for 2027. Any media value is an estimate and is labelled as one.");
+    "Sponsors are paying for visibility, and creators are one of the best ways to deliver it. Sponsor mentions go into every brief, creators are guided to each activation and stage banner on both nights, and every partner gets its own page in the report. The revenue model is the same chain as before, seen from the sponsor’s side: more creators bring more visibility, visibility meets the brands’ goals, and met goals bring sponsor money back for 2027. Any media value is an estimate and is labelled as one.");
   brand(s, false);
-  const pp = deck.photo(s, "press", { x: M, y: 1.95, w: 4.7, alt: "The Mother Africa Festival team at a press event in front of the festival backdrop" });
-  deck.chip(s, "Mother Africa Festival press event", M + 0.15, pp.y + pp.h - 0.47);
-  T(s, "Sponsors buy proven visibility. The report is how the festival proves it.", { x: M, y: 5.15, w: 4.7, h: 0.9, fontFace: deck.HEAD, fontSize: 20, color: "label" });
+  const pp = deck.photo(s, "press", { x: M, y: 1.95, w: 4.0, alt: "The Mother Africa Festival team at a press event in front of the festival backdrop" });
+  deck.chip(s, "Mother Africa Festival press event", M + 0.12, pp.y + pp.h - 0.44);
   [
     ["brief", "Written into every brief", "Sponsor mentions agreed in advance, so partners appear naturally."],
     ["camera", "Branding in shot", "Creators guided to every activation and stage banner on both nights."],
-    ["file", "A page per sponsor in the report", "Posts, views, screen time and a media value, clearly labelled as estimated."],
-    ["repeat", "Content the partners can reuse", "The festival and its sponsors can share the best pieces again."],
+    ["file", "A page per sponsor", "Posts, views, screen time and a media value, clearly labelled as estimated."],
+    ["repeat", "Reusable content", "The festival and its sponsors can share the best pieces again."],
   ].forEach(([icon, head, body], i) => {
-    const y = 1.95 + i * 1.12;
-    deck.iconCircle(s, icon, 5.85, y, 0.55, "gold");
-    T(s, head, { x: 6.65, y: y - 0.02, w: 6.05, h: 0.38, fontFace: deck.HEAD, fontSize: 20, color: "ink" });
-    T(s, body, { x: 6.65, y: y + 0.38, w: 6.05, h: 0.5, fontSize: 14, color: "muted" });
+    const x = 4.95 + (i % 2) * 3.94, y = 1.95 + Math.floor(i / 2) * 1.3;
+    deck.iconCircle(s, icon, x, y, 0.5, "gold");
+    T(s, head, { x: x + 0.65, y: y - 0.03, w: 3.1, h: 0.36, fontFace: deck.HEAD, fontSize: 18, color: "ink" });
+    T(s, body, { x: x + 0.65, y: y + 0.36, w: 3.1, h: 0.75, fontSize: 12.5, color: "muted" });
   });
+  revenueModel(s, M, 4.75, CW, 1.9);
 
   // 8. Inside the report
   deck.section("The visibility report");
@@ -304,10 +323,10 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
   deck.section("Proof");
   // 10. Track record
   s = deck.content("CONTENT_DARK", "WHY ATOURE", "We have built and tracked this before",
-    "This is not a new capability. In Abidjan, AToure built the IShowSpeed operation from zero, and ran Race Weekend Abidjan, its own event, with partner brands and Ivorian creators. In Morocco it delivered the AFCON mascot reveal with CAF and the FRMF. The Ashton Hall tour covered five countries end to end. Confirm the Ashton Hall figure before presenting: the decks use 1.57 billion, the website uses the media kit figure.",
+    "This is not a new capability. In Abidjan, AToure built the IShowSpeed operation from zero. In Morocco it delivered the AFCON mascot reveal with CAF and the Royal Moroccan Football Federation. The Ashton Hall tour covered five countries, managed end to end.",
     stripesFooter);
   brand(s, true);
-  const ph = 2.75, py = 1.95;
+  const ph = 3.0, py = 1.95;
   const proof = [
     ["speed_ci", "IShowSpeed in Côte d’Ivoire, Abidjan", "Abidjan", "55.8M", "Instagram views on one reel. IShowSpeed in Côte d’Ivoire."],
     ["speed_ma", "IShowSpeed in Morocco for the AFCON 2025 Final", "Morocco", "16M", "Live stream views of the AFCON mascot reveal, with CAF and the FRMF."],
@@ -317,17 +336,16 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
   proof.forEach(([key, alt, place, fig, label]) => {
     const p = deck.photo(s, key, { x: px, y: py, h: ph, alt });
     deck.chip(s, place, px + 0.12, py + ph - 0.44);
-    T(s, fig, { x: px, y: 4.85, w: p.w, h: 0.5, fontSize: 28, color: "highlight" });
-    T(s, label, { x: px, y: 5.4, w: p.w, h: 0.85, fontSize: 11, color: "tint" });
+    T(s, fig, { x: px, y: 5.1, w: p.w, h: 0.5, fontSize: 28, color: "highlight" });
+    T(s, label, { x: px, y: 5.62, w: p.w, h: 0.75, fontSize: 11, color: "tint" });
     px += p.w + 0.3;
   });
-  const rwx = px, rww = R - px;
-  s.addShape(pres.ShapeType.roundRect, { x: rwx, y: py, w: rww, h: ph, rectRadius: 0.1, fill: { color: C.panel }, line: { color: C.gold, width: 0.75, transparency: 55 } });
-  T(s, "RACE WEEKEND ABIDJAN 2026", { x: rwx + 0.25, y: py + 0.3, w: rww - 0.5, h: 0.6, fontSize: 11, bold: true, charSpacing: 3, color: "gold" });
-  T(s, "AToure’s own event: the first premium Formula 1 activation staged in Côte d’Ivoire.", { x: rwx + 0.25, y: py + 0.98, w: rww - 0.5, h: 1.6, fontFace: deck.HEAD, fontSize: 18, color: "paper" });
-  T(s, "600", { x: rwx, y: 4.85, w: rww, h: 0.5, fontSize: 28, color: "highlight" });
-  T(s, "Guests over two days, with 9 partner brands and 7 Ivorian creators booked.", { x: rwx, y: 5.4, w: rww, h: 0.85, fontSize: 11, color: "tint" });
-  T(s, "Sources: Instagram and YouTube analytics, tour figures supplied by the client, AToure event records.", { x: M, y: 6.45, w: CW, h: 0.26, fontSize: 10, color: "tint" });
+  const dx = px + 0.05, dw = R - dx;
+  s.addShape(pres.ShapeType.roundRect, { x: dx, y: py, w: dw, h: ph, rectRadius: 0.1, fill: { color: C.panel }, line: { color: C.gold, width: 0.75, transparency: 55 } });
+  deck.kicker(s, "WHAT ATOURE DID", dx + 0.22, py + 0.25, dw - 0.4, "gold");
+  bullets(s, ["Operations built from zero in Abidjan", "State visas, permits and security", "Sponsors and partners brought in", "Creators managed end to end"],
+    { x: dx + 0.22, y: py + 0.7, w: dw - 0.4, h: 2.15, fontSize: 12, color: "tint", paraSpaceAfter: 8 });
+  T(s, "Sources: Instagram and YouTube analytics, tour figures supplied by the client.", { x: M, y: 6.5, w: CW, h: 0.26, fontSize: 10, color: "tint" });
 
   // 11. The ask
   deck.section("The ask");
