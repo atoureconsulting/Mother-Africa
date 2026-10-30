@@ -1,0 +1,17 @@
+{
+  "outDir": "./assets",
+  "photos": {
+    "poster2026": { "src": "./src/poster-2026-davido.jpg" },
+    "poster2025": { "src": "./src/poster-2025.jpg" },
+    "crowd":      { "src": "./src/crowd-live.jpg" },
+    "press":      { "src": "./src/press-launch.jpg" },
+    "speed_ci":   { "src": "./src/ishowspeed-cote-divoire.webp" },
+    "speed_ma":   { "src": "./src/ishowspeed-morocco.webp" },
+    "ashton":     { "src": "./src/ashton-hall-nigeria.webp" }
+  },
+  "logos": {
+    "maf_light":  { "src": "./src/maf-logo.png" },
+    "maf_dark":   { "src": "./src/maf-logo-dark.png" },
+    "stripes":    { "src": "./src/stripes.png" }
+  }
+}

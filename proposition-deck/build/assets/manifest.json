@@ -1,0 +1,62 @@
+{
+ "poster2026": {
+  "file": "poster2026.jpg",
+  "w": 386,
+  "h": 518,
+  "src": "./src/poster-2026-davido.jpg"
+ },
+ "poster2025": {
+  "file": "poster2025.jpg",
+  "w": 447,
+  "h": 447,
+  "src": "./src/poster-2025.jpg"
+ },
+ "crowd": {
+  "file": "crowd.jpg",
+  "w": 588,
+  "h": 330,
+  "src": "./src/crowd-live.jpg"
+ },
+ "press": {
+  "file": "press.jpg",
+  "w": 564,
+  "h": 354,
+  "src": "./src/press-launch.jpg"
+ },
+ "speed_ci": {
+  "file": "speed_ci.jpg",
+  "w": 1800,
+  "h": 1252,
+  "src": "./src/ishowspeed-cote-divoire.webp"
+ },
+ "speed_ma": {
+  "file": "speed_ma.jpg",
+  "w": 1202,
+  "h": 1800,
+  "src": "./src/ishowspeed-morocco.webp"
+ },
+ "ashton": {
+  "file": "ashton.jpg",
+  "w": 1360,
+  "h": 1700,
+  "src": "./src/ashton-hall-nigeria.webp"
+ },
+ "maf_light": {
+  "file": "maf_light.png",
+  "w": 1088,
+  "h": 772,
+  "src": "./src/maf-logo.png"
+ },
+ "maf_dark": {
+  "file": "maf_dark.png",
+  "w": 1088,
+  "h": 772,
+  "src": "./src/maf-logo-dark.png"
+ },
+ "stripes": {
+  "file": "stripes.png",
+  "w": 1600,
+  "h": 900,
+  "src": "./src/stripes.png"
+ }
+}
