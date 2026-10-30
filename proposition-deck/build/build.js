@@ -290,19 +290,24 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
   [
     ["pulse", "Weekly pulse", "EVERY MONDAY IN THE BUILD UP", "One page: posts live, views, top creators, ticket links used and what changes next."],
     ["clock", "48 hour check", "BY 30 DECEMBER 2026", "Who posted, where, and against which brief. Anything missing is chased."],
-    ["file", "Full report", "DAY 14, BY 11 JANUARY 2027", "Every post and figure, audiences, tickets, sponsor pages and recommendations for 2027."],
+    ["file", "Full report", "DAY 14, BY 11 JANUARY 2027", "Every post and figure, audiences, tickets and sponsor pages, as a PDF with a web version."],
   ].forEach(([icon, head, when, body], i) => {
-    const y = 2.0 + i * 1.45;
+    const y = 2.0 + i * 1.35;
     deck.iconCircle(s, icon, M, y, 0.65, "gold");
     T(s, head, { x: 1.5, y: y - 0.04, w: 5.5, h: 0.42, fontFace: deck.HEAD, fontSize: 22, color: "ink" });
     deck.kicker(s, when, 1.5, y + 0.42, 5.5, "label");
     T(s, body, { x: 1.5, y: y + 0.75, w: 5.6, h: 0.6, fontSize: 14, color: "muted" });
   });
-  T(s, "Delivered as a PDF for the board and sponsors, with a web version.", { x: 1.5, y: 6.4, w: 5.6, h: 0.3, fontSize: 12, color: "label" });
+  // Link to the sample report's page 2 (the appendix slide). Link text takes the theme's link colour, the label role.
+  const PAGE2 = 12;
+  s.addShape(pres.ShapeType.roundRect, { x: 1.5, y: 6.38, w: 4.5, h: 0.42, rectRadius: 0.21, fill: { color: C.paper }, line: { color: C.label, width: 1 } });
+  T(s, [{ text: "See page 2: the detailed breakdown  →", options: { hyperlink: { slide: PAGE2, tooltip: "Sample report, page 2" } } }],
+    { x: 1.5, y: 6.38, w: 4.5, h: 0.42, fontSize: 12, bold: true, color: "label", align: "center", valign: "middle" });
   // Sample report page, drawn with illustrative figures, labelled as such.
-  const rx = 7.6, ry = 1.95, rw = 5.13;
-  s.addShape(pres.ShapeType.roundRect, { x: rx, y: ry, w: rw, h: 4.8, rectRadius: 0.08, fill: { color: C.paper }, line: { color: C.muted, width: 0.75, transparency: 72 }, shadow: deck.shadow() });
-  T(s, "VISIBILITY REPORT", { x: rx + 0.3, y: ry + 0.25, w: 3, h: 0.22, fontSize: 9, bold: true, charSpacing: 3, color: "label" });
+  const rx = 7.45, ry = 1.9, rw = 5.13;
+  s.addShape(pres.ShapeType.roundRect, { x: rx + 0.15, y: ry + 0.15, w: rw, h: 4.75, rectRadius: 0.08, fill: { color: C.paper }, line: { color: C.muted, width: 0.75, transparency: 60 }, objectName: "Sample report page 2" });
+  s.addShape(pres.ShapeType.roundRect, { x: rx, y: ry, w: rw, h: 4.75, rectRadius: 0.08, fill: { color: C.paper }, line: { color: C.muted, width: 0.75, transparency: 72 }, shadow: deck.shadow() });
+  T(s, "VISIBILITY REPORT  ·  PAGE 1", { x: rx + 0.3, y: ry + 0.25, w: 3.6, h: 0.22, fontSize: 9, bold: true, charSpacing: 3, color: "label" });
   T(s, "Mother Africa Festival 2026", { x: rx + 0.3, y: ry + 0.47, w: 4, h: 0.4, fontFace: deck.HEAD, fontSize: 18, color: "ink" });
   mafLogo(s, false, rx + rw - 0.85, ry + 0.25, 0.42);
   deck.line(s, rx + 0.3, ry + 0.95, rw - 0.6, 0, { color: "gold", width: 1 });
@@ -319,7 +324,9 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
     s.addShape(pres.ShapeType.roundRect, { x: rx + 1.45, y: y + 0.04, w: len, h: 0.16, rectRadius: 0.03, fill: { color: i === 0 ? C.client : C.gold }, line: { type: "none" } });
     T(s, pct + "%", { x: rx + 1.55 + len, y, w: 0.6, h: 0.24, fontSize: 10, bold: true, color: "ink", valign: "middle" });
   });
-  T(s, "Sample layout. Figures are illustrative.", { x: rx + 0.3, y: ry + 4.48, w: 4.5, h: 0.22, fontSize: 10, italic: true, bold: true, color: "label" });
+  T(s, "Sample layout. Figures are illustrative.", { x: rx + 0.3, y: ry + 4.42, w: 3.2, h: 0.22, fontSize: 10, italic: true, bold: true, color: "label" });
+  T(s, [{ text: "Page 2  →", options: { hyperlink: { slide: PAGE2, tooltip: "Sample report, page 2" } } }],
+    { x: rx + rw - 1.4, y: ry + 4.42, w: 1.1, h: 0.22, fontSize: 10, bold: true, color: "label", align: "right" });
 
   deck.section("Proof");
   // 10. Track record
@@ -375,6 +382,53 @@ const kit = require(path.join(SKILL, "scripts", "deck_kit.js"));
   });
   T(s, "Baba Touré, Director. AToure Management & Consulting.", { x: M, y: 6.85, w: 8, h: 0.26, fontSize: 11, color: "tint" });
   deck.logo(s, "dark", R - 2.2, 6.82, 2.2);
+
+  // 12. Appendix: the sample report, page 2. Illustrative figures that add up to page 1.
+  deck.section("Appendix");
+  s = deck.content("CONTENT_LIGHT", "APPENDIX  ·  SAMPLE REPORT, PAGE 2", "The detailed breakdown",
+    "Page 2 of the sample report, to show the depth behind the headline numbers: every creator with posts, views, interactions and ticket clicks, where the audience was, and what each partner received. The figures are illustrative and add up to page 1; they are not a forecast. The full report also lists every post with its link and time, and ends with recommendations for the next edition.");
+  brand(s, false);
+  const bx = M, by = 1.95, bw = CW, bh = 4.85;
+  s.addShape(pres.ShapeType.roundRect, { x: bx, y: by, w: bw, h: bh, rectRadius: 0.08, fill: { color: C.paper }, line: { color: C.muted, width: 0.75, transparency: 72 }, shadow: deck.shadow() });
+  T(s, "VISIBILITY REPORT  ·  PAGE 2", { x: bx + 0.3, y: by + 0.22, w: 4, h: 0.22, fontSize: 9, bold: true, charSpacing: 3, color: "label" });
+  T(s, "Mother Africa Festival 2026", { x: bx + 0.3, y: by + 0.44, w: 6, h: 0.4, fontFace: deck.HEAD, fontSize: 18, color: "ink" });
+  mafLogo(s, false, bx + bw - 0.85, by + 0.22, 0.42);
+  deck.line(s, bx + 0.3, by + 0.92, bw - 0.6, 0, { color: "gold", width: 1 });
+  deck.kicker(s, "BY CREATOR", bx + 0.3, by + 1.08, 4, "label");
+  deck.table(s,
+    [{ text: "Creator" }, { text: "Posts" }, { text: "Views" }, { text: "Interactions" }, { text: "Ticket clicks" }],
+    [
+      ["Creator A", "6", "820,000", "61,000", "2,100"],
+      ["Creator B", "5", "610,000", "48,500", "1,650"],
+      ["Creator C", "4", "455,000", "39,200", "1,240"],
+      ["Creator D", "4", "380,000", "27,800", "980"],
+      ["Creator E", "3", "290,000", "22,100", "730"],
+      ["13 other creators", "42", "645,000", "51,400", "2,700"],
+      ["Total", "64", "3,200,000", "250,000", "9,400"],
+    ],
+    { x: bx + 0.3, y: by + 1.36, w: 6.7, colW: [2.0, 0.8, 1.3, 1.3, 1.3], rowH: 0.3, fontSize: 10, name: "Sample table by creator" });
+  T(s, "Also in the full report: every post with its link, platform and time, and recommendations for the next edition.",
+    { x: bx + 0.3, y: by + 4.12, w: 6.9, h: 0.26, fontSize: 10, color: "muted" });
+  const cx2 = bx + 7.35, cw2 = bx + bw - 0.3 - cx2;
+  deck.kicker(s, "AUDIENCE", cx2, by + 1.08, 3, "label");
+  [["Côte d’Ivoire", 58], ["Diaspora abroad", 24], ["Rest of Africa", 18]].forEach(([t, pct], i) => {
+    const y = by + 1.4 + i * 0.34, len = 1.9 * pct / 58;
+    T(s, t, { x: cx2, y, w: 1.55, h: 0.24, fontSize: 10, color: "muted", valign: "middle" });
+    s.addShape(pres.ShapeType.roundRect, { x: cx2 + 1.6, y: y + 0.04, w: len, h: 0.16, rectRadius: 0.03, fill: { color: i === 0 ? C.client : C.gold }, line: { type: "none" } });
+    T(s, pct + "%", { x: cx2 + 1.7 + len, y, w: 0.6, h: 0.24, fontSize: 10, bold: true, color: "ink", valign: "middle" });
+  });
+  deck.kicker(s, "SPONSOR VALUE", cx2, by + 2.5, 3, "label");
+  deck.table(s,
+    [{ text: "Partner" }, { text: "Moments" }, { text: "Screen time" }, { text: "Media value, estimated" }],
+    [
+      ["Partner A", "42", "6 min 10 s", "18.5M FCFA"],
+      ["Partner B", "31", "4 min 25 s", "12.7M FCFA"],
+      ["Partner C", "18", "2 min 40 s", "7.3M FCFA"],
+    ],
+    { x: cx2, y: by + 2.8, w: cw2, colW: [0.9, 1.0, 1.0, cw2 - 2.9], rowH: 0.3, fontSize: 10, name: "Sample table by sponsor" });
+  T(s, "Sample layout. Figures are illustrative.", { x: bx + 0.3, y: by + 4.48, w: 4, h: 0.24, fontSize: 10, italic: true, bold: true, color: "label" });
+  T(s, [{ text: "←  Back to page 1", options: { hyperlink: { slide: 9, tooltip: "Reports on fixed dates" } } }],
+    { x: bx + bw - 2.3, y: by + 4.48, w: 2.0, h: 0.24, fontSize: 10, bold: true, color: "label", align: "right" });
 
   const out = path.join(WORK, "AToure Mother Africa Festival Proposal.pptx");
   await deck.save(out);

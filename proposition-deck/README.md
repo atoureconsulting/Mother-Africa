@@ -7,7 +7,7 @@ on the structure of the PFL Africa and AML decks.
 
 | File | What it is |
 |---|---|
-| `AToure Mother Africa Festival Proposal.pdf` | The 11 slide deck to send, brand fonts embedded |
+| `AToure Mother Africa Festival Proposal.pdf` | The 11 slide deck plus an appendix (sample report, page 2), brand fonts embedded |
 | `AToure Mother Africa Festival Proposal.pptx` | The editable master (needs Cormorant Garamond and Jost installed) |
 | `ai-photo-prompts.md` | Generative image prompts for more media, slide by slide |
 | `ideas-held-back.md` | Internal: ideas kept off the slides until something is signed |
